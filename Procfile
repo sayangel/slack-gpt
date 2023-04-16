@@ -1,1 +1,1 @@
-bot: poetry run python slackgpt.py
+bot: python slackgpt.py
