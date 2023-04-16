@@ -55,7 +55,7 @@ This version of the repo is adapted to be easily deployed to Heroku using a Pyth
     ```
     **Note**: If you have multiple Heroku apps deployed append `--app YOUR_APP_NAME` to each command before running it.
 
-3. Set the python environmnet compatible with the buildpack: `heroku config:set PYTHON_RUNTIME_VERSION=3.9.16`
+3. Set the python environment compatible with the buildpack: `heroku config:set PYTHON_RUNTIME_VERSION=3.9.16`
 4. Configure all the environment variables from the [instructions above](#environment-variables) using `heroku config:set`
 5. Deploy the app: `git push heroku main`
 6. Add a dyno resource: `heroku ps:scale bot=1`
