@@ -1,6 +1,9 @@
-# Slack ChatGPT Bot
-
+# Slack ChatGPT Bot on Heroku
 _This document was written by ChatGPT and directed by Aaron Ng ([@localghost](https://twitter.com/localghost))._
+
+_Original repo: [Slack ChatGPT bot](https://github.com/aaronn/slack-gpt)_
+
+_Modified by Angel Say ([@sayangel](https://twitter.com/sayangel)) to be easily deployed on Heroku._
 
 ## Introduction
 
@@ -39,9 +42,23 @@ Now your Slack bot should be ready to use!
 
 ## Deployment
 
-### Cloud Deployment:
+### Heroku Deployment:
 
-1. If deploying to a cloud service, check out and reconfigure `setup.sh` and `start.sh`.
+This version of the repo is adapted to be easily deployed to Heroku using a Python Poetry Buildpack. This assumes you have Heroku CLI tooling installed.
+
+1. Set up a new Heroku app: `heroku create`.
+2. Add the [Python Poetry Buildpack](https://elements.heroku.com/buildpacks/moneymeets/python-poetry-buildpack): 
+    ```
+    heroku buildpacks:clear
+    heroku buildpacks:add https://github.com/moneymeets/python-poetry-buildpack.git
+    heroku buildpacks:add heroku/python
+    ```
+    **Note**: If you have multiple Heroku apps deployed append `--app YOUR_APP_NAME` to each command before running it.
+
+3. Set the python environmnet compatible with the buildpack: `heroku config:set PYTHON_RUNTIME_VERSION=3.9.16`
+4. Configure all the environment variables from the [instructions above](#environment-variables) using `heroku config:set`
+5. Deploy the app: `git push heroku main`
+6. Add a dyno resource: `heroku ps:scale bot=1`
 
 ### Local Deployment:
 
